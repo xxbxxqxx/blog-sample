@@ -1,0 +1,65 @@
+import React from "react"
+import { Link } from "gatsby"
+import Layout from "../components/layout"
+import Img from "gatsby-image";
+import SEO from "../components/seo"
+import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
+import ShowPosts from "../components/showPosts"
+
+const IndexPage = ({ data, location }) => {
+  const posts = data.allContentfulBlogPost.edges;
+
+  return (
+  <Layout>
+    <SEO title="xxbxxqxx | 辺境からの便り。" />
+    <div id="Home">
+      <div className="container containerTop">
+        <h2>Posts</h2>
+        <ShowPosts
+          postEdges={posts}
+        />
+        <Pagination
+          count={10}
+        />
+      </div>
+    </div>
+  </Layout>
+  );
+};
+export default IndexPage
+
+export const query = graphql`
+  query QueryTop {
+    allContentfulBlogPost: allContentfulBlogPost(
+      sort: {fields: publishedAt, order: DESC}
+      limit: 6
+    ) {
+      edges {
+        node {
+          title
+          slug
+          content{
+            content
+          }
+          thumbnail {
+            fluid(maxWidth : 400, maxHeight : 200, resizingBehavior: FILL, quality: 75) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+            description
+          }
+          category{
+            slug
+            title
+          }
+          tags{
+            slug
+            title
+          }
+          publishedAt(formatString: "YYYY/MM/DD")
+          createdAt(formatString: "YYYY-MM-DD")
+        }
+      }
+    }
+  }
+`;

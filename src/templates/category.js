@@ -1,0 +1,73 @@
+import React from "react"
+import { Link, graphql } from "gatsby"
+import Layout from "../components/layout"
+//import Img from "gatsby-image";
+import SEO from "../components/seo"
+import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
+import ShowPosts from "../components/showPosts"
+
+const CategorizedPosts = ({ data, location, pageContext }) => {
+  const posts = data.allContentfulBlogPostCategorized.edges;
+
+  return (
+  <Layout>
+    <SEO title="xxbxxqxx | 辺境からの便り。" />
+    <div className={`Home-page${pageContext.currentPage}`}>
+      <div className="container containerTop">
+        <h2>{pageContext.title} の記事</h2>
+        <ShowPosts
+          postEdges={posts}
+        />
+        <Pagination
+          page={pageContext.currentPage}
+          count={pageContext.pageTotal}
+          renderItem={(item) => (
+            <PaginationItem
+              component={Link}
+              to={`/${item.page === 1 ? '' : `${item.page}`}`}
+              {...item}
+            />
+          )}
+        />
+      </div>
+    </div>
+  </Layout>
+  );
+};
+export default CategorizedPosts
+
+export const query = graphql`
+  query CategorizedPosts($slug: String!) {
+    allContentfulBlogPostCategorized: allContentfulBlogSamplePost(
+      sort: {fields: publishedAt, order: DESC}
+      filter: {category: {slug: {eq: $slug}}}
+    ){
+      edges {
+        node {
+          title
+          slug
+          content{
+            content
+          }
+          thumbnail {
+            fluid(maxWidth : 400, maxHeight : 200, resizingBehavior: FILL, quality: 75) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+            description
+          }
+          category{
+            slug
+            title
+          }
+          tags{
+            slug
+            title
+          }
+          publishedAt(formatString: "YYYY/MM/DD")
+          createdAt(formatString: "YYYY-MM-DD")
+        }
+      }
+    }
+  }
+`;
