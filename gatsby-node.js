@@ -54,6 +54,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
 
+
       //Index系ページの作成 
       const blogPostsPerPage = 7;
       const blogPostsTotal = result.data.allContentfulBlogSamplePost.edges.length;
