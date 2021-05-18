@@ -91,7 +91,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       //Tagごとの記事一覧ページ
       const tagTemplate = path.resolve("./src/templates/tag.js");
-      const tags = result.data.allContentfulBlogSampleTags.edges;
+      const tags = result.data.allContentfulBlogSampleTag.edges;
       tags.forEach(edge => {
         createPage({
           path: `/tag/${edge.node.slug}/`,
