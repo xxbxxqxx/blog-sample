@@ -20,7 +20,7 @@ const blogPost = ({ data, location }) => {
   const post = data.contentfulBlogSamplePost;
   return (
     <Layout>
-      <SEO title={`${post.title} | xxbxxqxx`} />
+      <SEO title={`${post.title} | Classmethod デモサイト`} />
       <div className="post">
         {post.thumbnail && //もしサムネイル画像をもっていれば
           <Img
@@ -54,12 +54,12 @@ const blogPost = ({ data, location }) => {
                   </ul>
                 </div>
             }
-            <div className="buttonBMCPostWrapper">
+            {/*<div className="buttonBMCPostWrapper">
               <p>もし記事がお役に立ちましたら、サポートいただけると嬉しいです。</p>
               <a href="https://www.buymeacoffee.com/xxbxxqxx" target="_blank" rel="noreferrer">
                 <Img fluid={data.imgBuyMeACoffee.childImageSharp.fluid} alt="Buy Me A Coffee" />
               </a>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>

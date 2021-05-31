@@ -27,11 +27,11 @@ const Footer = ({ siteTitle }) => {
   return (
   <footer>
     <div className="container flex-row ">
-      <div className="footer-content-copyright flex-column-4">
-        © 2021 <a href="https://xxbxxqxx.com/" rel="home">xxbxxqxx</a>
+      <div className="footer-content-copyright flex-column-6">
+        Copyright © Classmethod Inc., and Classmethod (Europe) GmbH
       </div>
-      <div className="footer-content-links flex-column-8 flex-row">
-        <div className="flex-column-4">
+      <div className="footer-content-links flex-column-6 flex-row">
+        <div className="flex-column-6">
           <p className="footer-subtitle">Category</p>
           <ul>
             {allCategories && allCategories.map(({ node: category }) => {
@@ -41,12 +41,11 @@ const Footer = ({ siteTitle }) => {
             })}
           </ul>
         </div>
-        <div className="flex-column-4">
-          <p className="footer-subtitle">About</p>
+        <div className="flex-column-6">
+          <p className="footer-subtitle">About Classmethod</p>
           <ul>
-            <li><a href="/about/">Profile</a></li>
-            <li><a href="https://twitter.com/xxbxxqxx" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-            <li><a href="https://www.instagram.com/xxbxxqxx/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://classmethod.jp/">コーポレートサイト</a></li>
+            <li><a href="https://dev.classmethod.jp/">DevelopersIO</a></li>
           </ul>
         </div>
       </div>

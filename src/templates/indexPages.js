@@ -12,7 +12,7 @@ const PageLists = ({ data, location, pageContext }) => {
 
   return (
   <Layout>
-    <SEO title="xxbxxqxx | 辺境からの便り。" />
+    <SEO title="デモサイト | Classmethod" />
     <div className={`Home-page${pageContext.currentPage}`}>
       <div className="container containerTop">
         <h2>
