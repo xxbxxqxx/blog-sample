@@ -2,10 +2,10 @@ require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: `xxbxxqxx`,
-    description: `とある辺境からの便り。ドイツ生活、山登り、ガジェット、読んだ本の紹介など。`,
+    title: `デモサイト`,
+    description: `Here you can put a description`,
     author: `Ryo Konishi`,
-    siteUrl: "https://xxbxxqxx.com",
+    siteUrl: "https://example.com",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,9 +22,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `xxbxxqxx`,
-        short_name: `xxbxxqxx`,
-        start_url: `https://xxbxxqxx.com`,
+        name: `rhd`,
+        short_name: `rhd`,
+        start_url: `https://example.com`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
@@ -47,13 +47,13 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST,
       },
     },
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "GTM-5CWVTC",
-        defaultDataLayer: { platform: "gatsby" }
-      }
-    },
+    //{
+    //  resolve: "gatsby-plugin-google-tagmanager",
+    //  options: {
+    //    id: "GTM-5CWVTC",
+    //    defaultDataLayer: { platform: "gatsby" }
+    //  }
+    //},
     `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
