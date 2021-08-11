@@ -50,12 +50,6 @@ export const query = graphql`
           content{
             content
           }
-          thumbnail {
-            fluid(maxWidth : 400, maxHeight : 200, resizingBehavior: FILL, quality: 75) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-            description
-          }
           category{
             slug
             title

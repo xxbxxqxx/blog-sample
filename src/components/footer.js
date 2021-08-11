@@ -36,7 +36,7 @@ const Footer = ({ siteTitle }) => {
           <ul>
             {allCategories && allCategories.map(({ node: category }) => {
               return(
-                <li><Link to={`/category/${category.slug}/`}>{category.title}</Link></li>
+                <li key={category.title + "saaa"}><Link to={`/category/${category.slug}/`}>{category.title}</Link></li>
               )
             })}
           </ul>

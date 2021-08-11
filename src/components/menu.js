@@ -28,7 +28,7 @@ const Menu = ({ open }) => {
         <ul className="categories">
           {allCategories && allCategories.map(({ node: category }) => {
             return(
-              <li><Link to={`/category/${category.slug}/`}>{category.title}</Link></li>
+              <li key={category.title + "saa"}><Link to={`/category/${category.slug}/`}>{category.title}</Link></li>
             )
           })}
         </ul>

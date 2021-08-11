@@ -20,11 +20,6 @@ const SearchResult = props => {
               }
               publishedAt(formatString: "YYYY/MM/DD")
               createdAt(formatString: "YYYY-MM-DD")
-              thumbnail {
-                fluid(maxWidth : 400, maxHeight : 200, resizingBehavior: FILL, quality: 75) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
-              }
             }
           }
         }

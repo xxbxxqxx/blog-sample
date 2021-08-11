@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Img from "gatsby-image";
 import marked from "marked";
 //import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import fetch from "node-fetch"
 
 marked.setOptions({
   pedantic: false,
@@ -16,18 +17,26 @@ marked.setOptions({
   xhtml: false
 });
 
-const blogPost = ({ data, location }) => {
+const BlogPost = ({ data, location }) => {
   const post = data.contentfulBlogSamplePost;
+
+  useEffect(() => {
+    // get data from GitHub api
+    console.log("ここから")
+    fetch(`/api/hello`)
+      .then(ressss => {console.log(JSON.stringify(ressss.json().data))}) // parse JSON from request
+  }, [])
+
   return (
     <Layout>
       <SEO title={`${post.title} | Classmethod デモサイト`} />
       <div className="post">
-        {post.thumbnail && //もしサムネイル画像をもっていれば
-          <Img
-          fluid={post.thumbnail.fluid}
-          className="thumbnail"
-          />
+        <div style={{textAlign: "center"}}>
+        {post.cloudinaryThumbnail
+          ? <img src={post.cloudinaryThumbnail[0].original_url} style={{maxWidth: "1200px"}} />
+          : post.thumbnail && <img src={post.thumbnail.file.url} style={{maxWidth: "1200px"}} />
         }
+        </div>
         <div className="container">
           <div className="main">
             <div className="postContent">
@@ -45,7 +54,7 @@ const blogPost = ({ data, location }) => {
                 <div className="body-text" dangerouslySetInnerHTML={{ __html: marked(post.content.content) }} />
               </div>
             </div>
-            {post.tags
+            {/*post.tags
               && <div className="TagsWrapper">
                   <ul>
                     {post.tags.map(({ title, slug }) =>
@@ -53,20 +62,14 @@ const blogPost = ({ data, location }) => {
                     )}
                   </ul>
                 </div>
-            }
-            {/*<div className="buttonBMCPostWrapper">
-              <p>もし記事がお役に立ちましたら、サポートいただけると嬉しいです。</p>
-              <a href="https://www.buymeacoffee.com/xxbxxqxx" target="_blank" rel="noreferrer">
-                <Img fluid={data.imgBuyMeACoffee.childImageSharp.fluid} alt="Buy Me A Coffee" />
-              </a>
-            </div>*/}
+            */}
           </div>
         </div>
       </div>
     </Layout>
   );
 };
-export default blogPost;
+export default BlogPost;
 export const pageQuery = graphql`
   query( $slug: String ) {
     contentfulBlogSamplePost(slug: { eq: $slug }) {
@@ -75,14 +78,18 @@ export const pageQuery = graphql`
       content{
         content
       }
-      thumbnail{
-        fluid(maxWidth : 2000, quality: 75) {
-        ...GatsbyContentfulFluid_withWebp
-        }
-      }
       category {
         slug
         title
+      }
+      cloudinaryThumbnail {
+        url
+        original_url
+      }
+      thumbnail {
+        file {
+          url
+        }
       }
       tags {
         slug
@@ -90,13 +97,6 @@ export const pageQuery = graphql`
       }
       publishedAt(formatString: "YYYY/MM/DD")
       createdAt(formatString: "YYYY/MM/DD")
-    }
-    imgBuyMeACoffee:file(relativePath: {eq: "BMCLogoMark.png"}) {
-        childImageSharp{
-          fluid(maxWidth: 300, quality: 80) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
     }
   }
 `;

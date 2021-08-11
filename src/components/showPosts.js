@@ -10,14 +10,10 @@ const Posts = ({ postEdges, postPageContext }) => {
         return (
           <Link to={`/post/${post.slug}/`} className="post-item flex-row">
             <div className="flex-column-6 post-item-thumbnail">
-              {post.thumbnail
-                ? <Img
-                    fluid={post.thumbnail.fluid}
-                    className="thumbnail"
-                    alt={post.thumbnail.description}
-                  />
-                : <GenerateThumbnail category={post.category.slug} />
-              }
+            {post.cloudinaryThumbnail
+              ? <img src={post.cloudinaryThumbnail[0].original_url} style={{width: "100%"}} />
+              : post.thumbnail && <img src={post.thumbnail.file.url} style={{width: "100%"}} />
+            }
             </div>
             <div className="flex-column-6 post-item-text">
               <p className="post__meta">
